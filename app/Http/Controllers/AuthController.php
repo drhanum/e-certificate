@@ -11,11 +11,14 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'role' => 'user'
         ]);
+
+        Auth::login($user);
 
         return redirect('/user/dashboard');
     }
@@ -34,7 +37,11 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+            'role' => 'user'
+        ];
 
         if (Auth::attempt($credentials)) {
 
@@ -43,6 +50,38 @@ class AuthController extends Controller
             return redirect('/user/dashboard');
         }
 
+        return back()->with('error', 'Akun user tidak ditemukan');
+    }
+
+    public function loginAdmin(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+
+            $user = Auth::user();
+
+            if ($user->role != 'admin') {
+                Auth::logout();
+
+                return back()->with('error', 'Akun ini bukan admin');
+            }
+
+            $request->session()->regenerate();
+
+            return redirect('/admin/dashboard');
+        }
+
         return back()->with('error', 'Email atau Password salah');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

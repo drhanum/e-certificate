@@ -15,7 +15,8 @@
             Login Admin
         </h1>
 
-        <form>
+        <form action="/login-admin" method="POST">
+            @csrf
 
             <div class="mb-4">
                 <label class="block mb-2">
@@ -24,6 +25,7 @@
 
                 <input
                     type="email"
+                    name="email"
                     class="w-full border rounded-lg px-4 py-2"
                     placeholder="Masukkan email">
             </div>
@@ -35,6 +37,7 @@
 
                 <input
                     type="password"
+                    name="password"
                     class="w-full border rounded-lg px-4 py-2"
                     placeholder="Masukkan password">
             </div>

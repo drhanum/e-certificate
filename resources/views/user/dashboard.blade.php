@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard User</title>
 
-    @vite(['resources/css/app.css'])
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @php
     use Illuminate\Support\Facades\Auth;
     @endphp
@@ -22,14 +24,39 @@
             </h1>
 
             <div class="flex items-center gap-4">
-                <span class="text-gray-600">
-                    Halo, {{ Auth::user()->name }}
-                </span>
+                <div>
+                    <div class="text-gray-600">
+                        Halo, {{ Auth::user()->name }}
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        {{ Auth::user()->email }}
+                    </div>
+                </div>
 
-                <a href="/"
-                   class="bg-red-500 text-white px-4 py-2 rounded-lg">
+                <button id="logoutButton"
+                    class="bg-red-500 text-white px-4 py-2 rounded-lg">
                     Logout
-                </a>
+                </button>
+            </div>
+
+            <div id="logoutModal" class="fixed inset-0 bg-black/40 hidden items-center justify-center p-4">
+                <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
+                    <h2 class="text-xl font-bold mb-3">Konfirmasi Logout</h2>
+                    <p class="text-gray-600 mb-6">Apakah Anda yakin ingin keluar?</p>
+                    <div class="flex justify-end gap-3">
+                        <button id="logoutCancel"
+                            class="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300">
+                            Batal
+                        </button>
+                        <form method="POST" action="/logout" class="inline">
+                            @csrf
+                            <button type="submit"
+                                class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700">
+                                Ya, Keluar
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -63,7 +90,7 @@
                 </h3>
 
                 <p class="text-3xl font-bold mt-2">
-                    5
+                    {{ $certificates->count() }}
                 </p>
             </div>
 
@@ -73,7 +100,7 @@
                 </h3>
 
                 <p class="text-3xl font-bold mt-2">
-                    5
+                    {{ $certificates->count() }}
                 </p>
             </div>
 
@@ -83,7 +110,7 @@
                 </h3>
 
                 <p class="text-3xl font-bold mt-2">
-                    12
+                    {{ $certificates->count() }}
                 </p>
             </div>
 
@@ -100,36 +127,67 @@
                 Sertifikat Saya
             </h2>
 
-            <table class="w-full border">
+            <table class="w-full rounded-lg overflow-hidden shadow">
 
                 <thead class="bg-gray-100">
                     <tr>
-                        <th class="p-3 border">No</th>
-                        <th class="p-3 border">Nama Sertifikat</th>
-                        <th class="p-3 border">Tanggal</th>
-                        <th class="p-3 border">Aksi</th>
+                        <th class="p-3 text-left">No</th>
+                        <th class="p-3 text-left">Nama</th>
+                        <th class="p-3 text-left">Email</th>
+                        <th class="p-3 text-left">Kategori</th>
+                        <th class="p-3 text-left">Nomor Sertifikat</th>
+                        <th class="p-3 text-left">Aksi</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
-                    <tr>
-                        <td class="p-3 border">1</td>
-                        <td class="p-3 border">
-                            Seminar Teknologi AI
-                        </td>
-                        <td class="p-3 border">
-                            01 Juni 2026
-                        </td>
-                        <td class="p-3 border">
+                    @forelse($certificates as $certificate)
 
-                            <button
-                                class="bg-green-600 text-white px-4 py-2 rounded">
-                                Download
-                            </button>
+                    <tr class="border-t hover:bg-gray-50">
+                        <td class="p-3">
+                            {{ $loop->iteration }}
+                        </td>
 
+                        <td class="p-3">
+                            {{ $certificate->name }}
+                        </td>
+
+                        <td class="p-3">
+                            {{ $certificate->email }}
+                        </td>
+
+                        <td class="p-3">
+                            {{ $certificate->category }}
+                        </td>
+
+                        <td class="p-3">
+                            {{ $certificate->certificate_number }}
+                        </td>
+
+                        <td class="p-3 text-center">
+                            <div class="flex center gap-2">
+                                <a href="{{ route('certificate.detail', $certificate->id) }}"
+                                   class="bg-blue-100 text-blue-600 p-2 rounded-lg hover:bg-blue-200 transition">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="{{ route('certificate.download', $certificate->id) }}"
+                                   class="bg-green-100 text-green-600 rounded-lg px-3 py-2 hover:bg-green-200 transition">
+                                    <i class="fa-solid fa-download"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
+
+                    @empty
+
+                    <tr>
+                        <td colspan="6" class="p-4 text-center">
+                            Belum ada sertifikat
+                        </td>
+                    </tr>
+
+                    @endforelse
 
                 </tbody>
 

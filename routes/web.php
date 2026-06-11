@@ -2,8 +2,30 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\UserController;
+
+Route::middleware('auth')->group(function () {
+
+    Route::get(
+        '/user/dashboard',
+        [UserController::class, 'dashboard']
+    )->name('user.dashboard');
+
+    Route::get(
+        '/certificate/detail/{id}',
+        [CertificateController::class, 'detail']
+    )->name('certificate.detail');
+
+});
+
+Route::post('/admin/generate', [CertificateController::class, 'store']);
 
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::post('/login-admin', [AuthController::class, 'loginAdmin']);
 
 Route::post('/register-admin', [AuthController::class, 'registerAdmin']);
 
@@ -11,15 +33,11 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/', function () {
     return view('home');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+})->name('login');
 
 Route::get('/register', function () {
     return view('register');
-});
+})->name('register');
 
 Route::get('/login', function () {
     return view('login');
@@ -33,6 +51,42 @@ Route::get('/login_admin', function () {
     return view('login_admin');
 });
 
-Route::get('/user/dashboard', function () {
-    return view('user.dashboard');
+Route::get('/admin/generate', function () {
+    return view('admin.generate');
 });
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+Route::get(
+    '/admin/sertifikat',
+    [CertificateController::class, 'index']
+);
+
+// Allow event parameter to contain slashes or encoded characters
+Route::get(
+    '/admin/sertifikat/{event}',
+    [CertificateController::class, 'show']
+)->where('event', '.*');
+
+Route::get(
+    '/certificate/download/{id}',
+    [CertificateController::class, 'download']
+)->name('certificate.download');
+
+// Public API to verify certificate by number (used on home page)
+Route::get(
+    '/certificate/check/{number}',
+    [CertificateController::class, 'check']
+)->where('number', '.*');
+
+Route::post(
+    '/admin/sertifikat/delete',
+    [CertificateController::class, 'destroy']
+);
+
+Route::post(
+    '/admin/sertifikat/delete-event',
+    [CertificateController::class, 'destroyEvent']
+);

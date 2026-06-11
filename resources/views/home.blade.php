@@ -17,66 +17,56 @@
 
     <!-- Sidebar -->
     <div id="sidebar"
-        class="fixed top-0 left-[-260px] w-64 h-full bg-white text-black z-50 transition-all duration-300">
+        class="fixed top-0 left-[-260px] w-64 h-full bg-white text-black z-50 transition-all duration-300 flex flex-col">
 
-        <div class="p-5 border-b border-gray-700 flex justify-between">
-            <h2 class="font-bold">MENU</h2>
-
-            <button id="closeBtn">
-                ✕
-            </button>
+        <div class="p-5 border-b border-gray-700">
+            <h2 class="text-xl font-bold">
+                E-SERTIFIKAT
+            </h2>
         </div>
 
-        <nav class="flex flex-col h-[calc(100%-73px)]">
+        <nav class="mt-5 flex-1 space-y-2 px-4">
 
-            <!-- Menu Utama -->
-            <div class="mt-4">
+            <a href="/"
+               class="inline-flex w-56 h-12 items-center justify-center rounded-xl bg-gray-100 text-center hover:bg-blue-600 hover:text-white transition">
+                Home
+            </a>
 
-                <a href="/" class="block px-5 py-3 hover:bg-blue-300">
-                    Home
-                </a>
+            <a id="cekLink" href="#cek"
+               class="inline-flex w-56 h-12 items-center justify-center rounded-xl bg-gray-100 text-center hover:bg-blue-600 hover:text-white transition">
+                Cek Sertifikat
+            </a>
 
-                <a id="cekLink"
-                href="#cek"
-                class="block px-5 py-3 hover:bg-blue-300">
-                    Cek Sertifikat
-                </a>
+            <a id="fiturLink" href="#fitur"
+               class="inline-flex w-56 h-12 items-center justify-center rounded-xl bg-gray-100 text-center hover:bg-blue-600 hover:text-white transition">
+                Details
+            </a>
 
-                <a id="fiturLink"
-                href="#fitur"
-                class="block px-5 py-3 hover:bg-blue-300">
-                    Details
-                </a>
-
-                <a id="hubungiLink"
-                href="#hubungi-kami"
-                class="block px-5 py-3 hover:bg-blue-300">
-                    Hubungi Kami
-                </a>
-
-            </div>
-
-            <!-- Menu Admin -->
-            <div class="mt-auto border-t">
-
-                <a href="/register_admin"
-                class="block px-5 py-3 hover:bg-green-200">
-                    Register Admin
-                </a>
-
-                <a href="/login_admin"
-                class="block px-5 py-3 hover:bg-blue-300">
-                    Login Admin
-                </a>
-
-            </div>
+            <a id="hubungiLink" href="#hubungi-kami"
+               class="inline-flex w-56 h-12 items-center justify-center rounded-xl bg-gray-100 text-center hover:bg-blue-600 hover:text-white transition">
+                Hubungi Kami
+            </a>
 
         </nav>
+
+        <div class="space-y-2 p-4 border-t">
+
+            <a href="/register_admin"
+               class="inline-flex w-56 h-12 items-center justify-center rounded-xl bg-green-100 text-center hover:bg-green-600 hover:text-white transition">
+                Register Admin
+            </a>
+
+            <a href="/login_admin"
+               class="inline-flex w-56 h-12 items-center justify-center rounded-xl bg-gray-100 text-center hover:bg-blue-600 hover:text-white transition">
+                Login Admin
+            </a>
+
+        </div>
 
     </div>
 
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 w-full bg-white shadow z-50">
+    <nav class="fixed top-0 left-0 w-full bg-white shadow z-40">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
 
             <div class="flex items-center gap-3">
@@ -104,43 +94,46 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="container mx-auto px-6 pt-24 pb-12">
+    <!-- Main Content -->
+    <main class="pt-24">
 
-        <div class="grid md:grid-cols-2 gap-10 items-center">
+        <!-- Hero Section -->
+        <section class="container mx-auto px-6 py-12">
 
-            <div>
-                <h1 class="text-5xl font-bold text-gray-800 mb-6">
-                    Sistem E-Sertifikat Digital
-                </h1>
+            <div class="grid md:grid-cols-2 gap-10 items-center">
 
-                <p class="text-gray-600 text-lg mb-6">
-                    Platform untuk membuat, mengelola, memverifikasi,
-                    dan mengunduh sertifikat digital secara cepat dan aman.
-                </p>
+                <div>
+                    <h1 class="text-5xl font-bold text-gray-800 mb-6">
+                        Sistem E-Sertifikat Digital
+                    </h1>
 
-                <div class="flex gap-4">
-                    <a href="#cek"
-                       class="border border-blue-600 text-blue-600 px-6 py-3 rounded-lg">
-                        Verifikasi Sertifikat
-                    </a>
+                    <p class="text-gray-600 text-lg mb-6">
+                        Platform untuk membuat, mengelola, memverifikasi,
+                        dan mengunduh sertifikat digital secara cepat dan aman.
+                    </p>
+
+                    <div class="flex gap-4">
+                        <a href="#cek"
+                           class="border border-blue-600 text-blue-600 px-6 py-3 rounded-lg">
+                            Verifikasi Sertifikat
+                        </a>
+                    </div>
+                    
                 </div>
-                
+
+                <div>
+                    <div class="bg-white shadow-lg rounded-xl p-5">
+                        <img
+                            src="https://placehold.co/800x500"
+                            alt="Preview Sertifikat"
+                            class="rounded-lg w-full"
+                        >
+                    </div>
+                </div>
+
             </div>
 
-            <div>
-                <div class="bg-white shadow-lg rounded-xl p-5">
-                    <img
-                        src="https://placehold.co/800x500"
-                        alt="Preview Sertifikat"
-                        class="rounded-lg w-full"
-                    >
-                </div>
-            </div>
-
-        </div>
-
-    </section>
+        </section>
 
     <!-- Cek Sertifikat -->
     <section id="cek" class="py-16 bg-white">
@@ -155,21 +148,124 @@
                 Masukkan nomor sertifikat untuk melakukan verifikasi.
             </p>
 
-            <form class="flex flex-col md:flex-row gap-4">
+            <form id="certificateCheckForm" class="flex flex-col md:flex-row gap-4" onsubmit="return false;">
 
                 <input
+                    id="certificateNumberInput"
                     type="text"
                     placeholder="Masukkan Nomor Sertifikat"
                     class="flex-1 border rounded-lg px-4 py-3"
                 >
 
                 <button
-                    type="submit"
+                    id="certificateCheckBtn"
+                    type="button"
                     class="bg-blue-600 text-white px-8 py-3 rounded-lg">
                     CEK
                 </button>
 
             </form>
+
+            <!-- Verification Modal -->
+            <div id="verifyModal" class="fixed inset-0 bg-black/40 hidden items-center justify-center p-4 z-50">
+                <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 id="verifyTitle" class="text-xl font-bold">Hasil Verifikasi</h3>
+                        <button id="verifyClose" class="text-gray-600 hover:text-gray-800">✕</button>
+                    </div>
+
+                    <div id="verifyContent">
+                        <!-- Filled by JS -->
+                    </div>
+
+                    <div class="mt-6 text-right">
+                        <a id="verifyDownload" href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 hidden">Download PDF</a>
+                        <button id="verifyCloseBtn" class="ml-2 px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">Tutup</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                (function () {
+                    const btn = document.getElementById('certificateCheckBtn');
+                    const input = document.getElementById('certificateNumberInput');
+                    const modal = document.getElementById('verifyModal');
+                    const content = document.getElementById('verifyContent');
+                    const close = document.getElementById('verifyClose');
+                    const closeBtn = document.getElementById('verifyCloseBtn');
+                    const downloadBtn = document.getElementById('verifyDownload');
+
+                    function showModal() {
+                        modal.classList.remove('hidden');
+                        modal.classList.add('flex');
+                    }
+
+                    function hideModal() {
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                    }
+
+                    function formatDate(d) {
+                        if (!d) return '-';
+                        const dt = new Date(d);
+                        return dt.toLocaleDateString();
+                    }
+
+                    btn.addEventListener('click', function () {
+                        const number = input.value.trim();
+                        if (!number) return alert('Masukkan nomor sertifikat.');
+
+                        fetch(`/certificate/check/${encodeURIComponent(number)}`)
+                            .then(r => r.json())
+                            .then(data => {
+                                if (!data.found) {
+                                    content.innerHTML = `<p class="text-red-600 font-semibold">Nomor sertifikat tidak terdaftar.</p>`;
+                                    downloadBtn.classList.add('hidden');
+                                    showModal();
+                                    return;
+                                }
+
+                                const c = data.certificate;
+
+                                content.innerHTML = `
+                                    <div class="grid lg:grid-cols-2 gap-4">
+                                        <div class="bg-gray-50 p-4 rounded">
+                                            <h4 class="font-semibold mb-2">Data Event</h4>
+                                            <p><strong>Nama Event:</strong> ${c.event_name}</p>
+                                            <p><strong>Penyelenggara:</strong> ${c.organizer_name}</p>
+                                            <p><strong>Tanggal Event:</strong> ${formatDate(c.event_date)}</p>
+                                            <p><strong>Tanggal Terbit:</strong> ${formatDate(c.certificate_issue_date)}</p>
+                                            <p><strong>Masa Aktif:</strong> ${c.valid_until ? formatDate(c.valid_until) : '-'}</p>
+                                        </div>
+                                        <div class="bg-gray-50 p-4 rounded">
+                                            <h4 class="font-semibold mb-2">Data Peserta</h4>
+                                            <p><strong>Nama:</strong> ${c.name}</p>
+                                            <p><strong>Email:</strong> ${c.email}</p>
+                                            <p><strong>Kategori:</strong> ${c.category}</p>
+                                            <p><strong>Nomor Sertifikat:</strong> ${c.certificate_number}</p>
+                                        </div>
+                                    </div>
+                                `;
+
+                                downloadBtn.href = `/certificate/download/${c.id}`;
+                                downloadBtn.classList.remove('hidden');
+                                showModal();
+                            })
+                            .catch(err => {
+                                console.error(err);
+                                alert('Terjadi kesalahan saat memeriksa sertifikat.');
+                            });
+                    });
+
+                    close.addEventListener('click', hideModal);
+                    closeBtn.addEventListener('click', hideModal);
+
+                    // close when clicking outside
+                    modal.addEventListener('click', function (e) {
+                        if (e.target === modal) hideModal();
+                    });
+                })();
+            </script>
 
         </div>
 
@@ -232,19 +328,19 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
 
                 <div class="bg-gray-100 p-8 rounded-lg text-center">
-                    Logo Mitra 1
+                    <img src="{{ asset('assets/HMIF_Logo.png') }}" alt="Logo Mitra 1" class="mx-auto">
                 </div>
 
                 <div class="bg-gray-100 p-8 rounded-lg text-center">
-                    Logo Mitra 2
+                    <img src="{{ asset('assets/Logo_Creative.png') }}" alt="Logo Mitra 2" class="mx-auto">
                 </div>
 
                 <div class="bg-gray-100 p-8 rounded-lg text-center">
-                    Logo Mitra 3
+                    <img src="{{ asset('assets/Logo_Informatika.png') }}" alt="Logo Mitra 3" class="mx-auto">
                 </div>
 
                 <div class="bg-gray-100 p-8 rounded-lg text-center">
-                    Logo Mitra 4
+                    <img src="{{ asset('assets/logo_matana.png') }}" alt="Logo Mitra 4" class="mx-auto">
                 </div>
 
             </div>
@@ -378,6 +474,8 @@
     <footer class="bg-gray-900 text-white py-6 text-center">
         © 2026 Website E-Sertifikat
     </footer>
+
+    </main>
 
 </body>
 </html>
