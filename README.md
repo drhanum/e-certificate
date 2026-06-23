@@ -1,6 +1,12 @@
 # e-Certificate
 
-Repository untuk proyek aplikasi e-certificate.
+Repository untuk proyek aplikasi e-certificate, dalam rangka pemenuhan tugas akhir mata kuliah Rekayasa Perangkat Lunak.
+
+Disusun oleh:
+1. Dwi Riani Hanum - 20255520020
+2. Felix Valentino - 20255520001
+3. Nicholas Clementius S - 20255520002
+4. Naomi Najla M R - 20255520012
 
 ## Project Links
 
