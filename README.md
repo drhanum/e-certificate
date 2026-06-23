@@ -13,7 +13,16 @@ Repository untuk proyek aplikasi e-certificate.
 
 Ikuti langkah ini untuk menjalankan aplikasi di laptop:
 
-1. Salin file lingkungan:
+1. Clone repository atau download ZIP, lalu masuk ke folder proyek:
+
+```bash
+git clone https://github.com/drhanum/e-certificate
+cd e-certificate
+```
+
+Jika kamu menggunakan ZIP, cukup ekstrak file dan buka folder `e-certificate`.
+
+2. Salin file lingkungan:
 
 ```bash
 copy .env.example .env
