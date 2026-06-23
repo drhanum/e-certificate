@@ -1,59 +1,73 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# e-Certificate
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Repository untuk proyek aplikasi e-certificate.
 
-## About Laravel
+## Project Links
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Laporan**: https://docs.google.com/document/d/1h0ZPJFs6blaNEx9Sn9F17gT5nqoEOgb7i1js6EwaSJ0/edit?usp=sharing
+- **PPT**: https://www.canva.com/design/DAHNTuUcuhU/ErI1dx-ntoFdQOSpdEz5AA/view
+- **Protoyype (Figma)**: https://www.figma.com/proto/vkbV47peCnZ7cAHiyfpLoK/Untitled?node-id=111-3&p=f=t=1dzewTO6aiBqZVTq-1&scaling=scale-down-width&content-scaling=fixed&page-id=111%3A2&starting-point-node-id=111%3A3
+- **Video Demo & Presentasi**: https://drive.google.com/file/d/16JvF3b8FGqNLu_ARZ8qRnT-70LwVXWov/view?usp=drivesdk
 
+## Running the Project Locally
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Ikuti langkah ini untuk menjalankan aplikasi di laptop:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+1. Salin file lingkungan:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+copy .env.example .env
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+2. Install dependency PHP dan Node:
 
-## Contributing
+```bash
+composer install
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. Buat file database SQLite:
 
-## Code of Conduct
+```bash
+type nul > database\database.sqlite
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. Generate application key:
 
-## Security Vulnerabilities
+```bash
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. Jalankan migrasi database:
 
-## License
+```bash
+php artisan migrate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Buat storage symlink untuk file upload:
+
+```bash
+php artisan storage:link
+```
+
+7. Build asset front-end:
+
+```bash
+npm run build
+```
+
+8. Jalankan server aplikasi:
+
+```bash
+php artisan serve --host=127.0.0.1 --port=8000
+```
+
+9. Buka di browser:
+
+```text
+http://127.0.0.1:8000
+```
+
+> Catatan:
+> - Jika menggunakan Laragon, pastikan PHP, Composer, Node.js, dan npm sudah terpasang.
+> - Bila ingin menggunakan MySQL, ubah pengaturan `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, dan `DB_PASSWORD` di `.env` lalu buat database sebelum migrasi.
