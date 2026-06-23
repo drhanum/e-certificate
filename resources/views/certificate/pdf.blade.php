@@ -44,6 +44,11 @@ body {
     font-weight: bold;
 }
 
+.number,
+.category {
+    font-weight: bold;
+}
+
 </style>
 
 </head>
@@ -52,7 +57,7 @@ body {
 <div class="template">
 
     <img
-        src="{{ public_path('storage/'.$template->template_path) }}"
+        src="{{ $templateImageSrc ?? public_path('storage/'.$template->template_path) }}"
         style="
             width:1123px;
             height:794px;
@@ -64,9 +69,9 @@ body {
 
     <div class="name"
         style="
-        top:{{$template->name_y}}px;
-        color:{{$template->name_color}};
-        font-size:{{$template->name_size}}px;
+        top:{{$template->name_y ?? 0}}px;
+        color:{{$template->name_color ?? '#000000'}};
+        font-size:{{$template->name_size ?? 36}}px;
         font-weight:bold;
         ">
         {{ $certificate->name }}
@@ -74,18 +79,20 @@ body {
 
     <div class="number"
         style="
-        top:{{$template->number_y}}px;
-        color:{{$template->number_color}};
-        font-size:{{$template->number_size}}px;
+        top:{{$template->number_y ?? 0}}px;
+        color:{{$template->number_color ?? '#000000'}};
+        font-size:{{$template->number_size ?? 18}}px;
+        font-weight:bold;
         ">
         {{ $certificate->certificate_number }}
     </div>
 
     <div class="category"
         style="
-        top:{{$template->category_y}}px;
-        color:{{$template->category_color}};
-        font-size:{{$template->category_size}}px;
+        top:{{$template->category_y ?? 0}}px;
+        color:{{$template->category_color ?? '#000000'}};
+        font-size:{{$template->category_size ?? 24}}px;
+        font-weight:bold;
         ">
         {{ $certificate->category }}
     </div>

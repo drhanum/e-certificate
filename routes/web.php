@@ -17,9 +17,34 @@ Route::middleware('auth')->group(function () {
         [CertificateController::class, 'detail']
     )->name('certificate.detail');
 
+    Route::get(
+        '/admin/sertifikat',
+        [CertificateController::class, 'index']
+    );
+
+    Route::get(
+        '/admin/sertifikat/{event}',
+        [CertificateController::class, 'show']
+    )->where('event', '.*');
+
+    Route::get(
+        '/certificate/download/{id}',
+        [CertificateController::class, 'download']
+    )->name('certificate.download');
+
+    Route::post(
+        '/admin/sertifikat/delete',
+        [CertificateController::class, 'destroy']
+    );
+
+    Route::post(
+        '/admin/sertifikat/delete-event',
+        [CertificateController::class, 'destroyEvent']
+    );
+
 });
 
-Route::post('/admin/generate', [CertificateController::class, 'store']);
+Route::post('/admin/generate', [CertificateController::class, 'store'])->middleware('auth');
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -53,40 +78,14 @@ Route::get('/login_admin', function () {
 
 Route::get('/admin/generate', function () {
     return view('admin.generate');
-});
+})->middleware('auth');
 
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
-});
-
-Route::get(
-    '/admin/sertifikat',
-    [CertificateController::class, 'index']
-);
-
-// Allow event parameter to contain slashes or encoded characters
-Route::get(
-    '/admin/sertifikat/{event}',
-    [CertificateController::class, 'show']
-)->where('event', '.*');
-
-Route::get(
-    '/certificate/download/{id}',
-    [CertificateController::class, 'download']
-)->name('certificate.download');
+})->middleware('auth');
 
 // Public API to verify certificate by number (used on home page)
 Route::get(
     '/certificate/check/{number}',
     [CertificateController::class, 'check']
 )->where('number', '.*');
-
-Route::post(
-    '/admin/sertifikat/delete',
-    [CertificateController::class, 'destroy']
-);
-
-Route::post(
-    '/admin/sertifikat/delete-event',
-    [CertificateController::class, 'destroyEvent']
-);

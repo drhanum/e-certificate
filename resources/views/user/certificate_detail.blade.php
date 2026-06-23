@@ -83,10 +83,16 @@
             <div class="mt-8 bg-white rounded-xl shadow-inner p-6 border border-gray-200">
                 <h2 class="text-xl font-semibold mb-4">Tindakan</h2>
                 <div class="flex flex-wrap gap-3">
-                    <a href="{{ route('certificate.download', $certificate->id) }}"
+                    <a href="{{ route('certificate.download', ['id' => $certificate->id, 'format' => 'pdf']) }}"
                        class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-lg hover:bg-green-200 transition">
                         <i class="fa-solid fa-download"></i>
-                        Unduh Sertifikat
+                        PDF
+                    </a>
+
+                    <a href="{{ route('certificate.download', ['id' => $certificate->id, 'format' => 'png']) }}"
+                       class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-200 transition">
+                        <i class="fa-solid fa-image"></i>
+                        Image
                     </a>
                 </div>
             </div>

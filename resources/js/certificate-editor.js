@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function getScaledPosition(element, image, center = false) {
             const imageRect = image.getBoundingClientRect();
+            const elementRect = element.getBoundingClientRect();
             const displayWidth = imageRect.width || image.naturalWidth;
             const displayHeight = imageRect.height || image.naturalHeight;
             const pdfWidth = 1123;
@@ -124,15 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const scaleX = displayWidth ? pdfWidth / displayWidth : 1;
             const scaleY = displayHeight ? pdfHeight / displayHeight : 1;
 
-            const baseLeft = parseFloat(element.style.left) || 0;
-            const baseTop = parseFloat(element.style.top) || 0;
-            const translateX = parseFloat(element.getAttribute('data-x')) || 0;
-            const translateY = parseFloat(element.getAttribute('data-y')) || 0;
-            const elementWidth = center ? element.getBoundingClientRect().width || element.offsetWidth || 0 : 0;
-
             return {
-                left: (baseLeft + translateX + (center ? elementWidth / 2 : 0)) * scaleX,
-                top: (baseTop + translateY) * scaleY,
+                left: ((elementRect.left - imageRect.left) + (center ? (elementRect.width / 2) : 0)) * scaleX,
+                top: (elementRect.top - imageRect.top) * scaleY,
             };
         }
 
@@ -142,9 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const number = document.getElementById('drag-number');
             const templateImg = document.getElementById('template-preview');
 
-            const namePos = getScaledPosition(name, templateImg, true);
-            const categoryPos = getScaledPosition(category, templateImg);
-            const numberPos = getScaledPosition(number, templateImg);
+            const namePos = getScaledPosition(name, templateImg);
+            const categoryPos = getScaledPosition(category, templateImg, true);
+            const numberPos = getScaledPosition(number, templateImg, true);
 
             document.querySelector('[name=name_x]').value = Math.round(namePos.left);
             document.querySelector('[name=name_y]').value = Math.round(namePos.top);

@@ -26,6 +26,12 @@ class CertificateTemplate extends Model
         'category_size',
 
         'number_color',
-        'number_size'
+        'number_size',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

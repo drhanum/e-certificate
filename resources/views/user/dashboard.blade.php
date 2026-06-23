@@ -149,8 +149,10 @@
                             {{ $loop->iteration }}
                         </td>
 
-                        <td class="p-3">
-                            {{ $certificate->name }}
+                        <td class="p-3 align-top">
+                            <span style="white-space:normal;">
+                                {!! wordwrap(e($certificate->name), 21, '<br>', true) !!}
+                            </span>
                         </td>
 
                         <td class="p-3">
@@ -171,9 +173,13 @@
                                    class="bg-blue-100 text-blue-600 p-2 rounded-lg hover:bg-blue-200 transition">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a href="{{ route('certificate.download', $certificate->id) }}"
+                                <a href="{{ route('certificate.download', ['id' => $certificate->id, 'format' => 'pdf']) }}"
                                    class="bg-green-100 text-green-600 rounded-lg px-3 py-2 hover:bg-green-200 transition">
-                                    <i class="fa-solid fa-download"></i>
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                </a>
+                                <a href="{{ route('certificate.download', ['id' => $certificate->id, 'format' => 'png']) }}"
+                                   class="bg-blue-100 text-blue-600 rounded-lg px-3 py-2 hover:bg-blue-200 transition">
+                                    <i class="fa-solid fa-image"></i>
                                 </a>
                             </div>
                         </td>

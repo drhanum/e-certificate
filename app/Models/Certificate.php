@@ -17,6 +17,18 @@ class Certificate extends Model
         'activity_type',
         'category',
         'valid_until',
-        'file_path'
+        'file_path',
+        'user_id',
+        'certificate_template_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function certificateTemplate()
+    {
+        return $this->belongsTo(CertificateTemplate::class);
+    }
 }

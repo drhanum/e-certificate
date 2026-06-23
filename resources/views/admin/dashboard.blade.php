@@ -8,10 +8,13 @@
     @vite(['resources/css/app.css', 'resources/js/logout-modal.js'])
     @php
         use App\Models\Certificate;
+        use Illuminate\Support\Facades\Auth;
 
-        $totalParticipants = Certificate::count();
+        $userId = Auth::id();
+        $totalParticipants = Certificate::where('user_id', $userId)->count();
         // Count distinct combinations of event_name, organizer_name and event_date
-        $totalEvents = Certificate::select('event_name', 'organizer_name', 'event_date')
+        $totalEvents = Certificate::where('user_id', $userId)
+            ->select('event_name', 'organizer_name', 'event_date')
             ->groupBy('event_name', 'organizer_name', 'event_date')
             ->get()
             ->count();

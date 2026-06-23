@@ -21,7 +21,7 @@
 
         <div class="p-5 border-b border-gray-700">
             <h2 class="text-xl font-bold">
-                E-SERTIFIKAT
+                CERTANA
             </h2>
         </div>
 
@@ -75,7 +75,7 @@
                 </button>
 
                 <h1 class="font-bold text-lg">
-                    WEBSITE E-SERTIFIKAT
+                    Certana - Certificate Matana University
                 </h1>
             </div>
 
@@ -124,7 +124,7 @@
                 <div>
                     <div class="bg-white shadow-lg rounded-xl p-5">
                         <img
-                            src="https://placehold.co/800x500"
+                            src="{{ asset('assets/temp-sertif-prisma.png') }}"
                             alt="Preview Sertifikat"
                             class="rounded-lg w-full"
                         >
@@ -179,7 +179,7 @@
                     </div>
 
                     <div class="mt-6 text-right">
-                        <a id="verifyDownload" href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 hidden">Download PDF</a>
+                        <!-- <a id="verifyDownload" href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 hidden">Download PDF</a> -->
                         <button id="verifyCloseBtn" class="ml-2 px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">Tutup</button>
                     </div>
                 </div>
@@ -193,7 +193,7 @@
                     const content = document.getElementById('verifyContent');
                     const close = document.getElementById('verifyClose');
                     const closeBtn = document.getElementById('verifyCloseBtn');
-                    const downloadBtn = document.getElementById('verifyDownload');
+                    // const downloadBtn = document.getElementById('verifyDownload');
 
                     function showModal() {
                         modal.classList.remove('hidden');
@@ -247,9 +247,9 @@
                                     </div>
                                 `;
 
-                                downloadBtn.href = `/certificate/download/${c.id}`;
-                                downloadBtn.classList.remove('hidden');
-                                showModal();
+                                    // downloadBtn.href = `/certificate/download/${c.id}`;
+                                    // downloadBtn.classList.remove('hidden');
+                                    showModal();
                             })
                             .catch(err => {
                                 console.error(err);
