@@ -97,9 +97,62 @@
                 </div>
             </div>
 
+            <div class="mt-8 rounded-xl border border-yellow-200 bg-yellow-50 p-6">
+                <h2 class="text-xl font-semibold mb-2">
+                    Ajukan Perubahan Data
+                </h2>
+
+                <p class="text-sm text-gray-700 mb-4">
+                    Jika ada kesalahan pada nama, email, kategori, atau data event, silakan hubungi admin yang membuat sertifikat ini agar bisa dilakukan pengecekan dan perbaikan.
+                </p>
+
+                @php
+                    $adminEmail = optional($certificate->user)->email;
+                    $emailSubject = 'Permohonan Perubahan Data Sertifikat ' . $certificate->certificate_number;
+                    $emailBody = "Halo Admin,\n\nSaya ingin mengajukan perubahan data pada sertifikat berikut:\n- Nama: {$certificate->name}\n- Email: {$certificate->email}\n- Nomor Sertifikat: {$certificate->certificate_number}\n\nBagian data yang perlu diperbaiki:\n\nTerima kasih.";
+                    $gmailComposeUrl = $adminEmail
+                        ? 'https://mail.google.com/mail/?view=cm&fs=1'
+                            . '&to=' . rawurlencode($adminEmail)
+                            . '&su=' . rawurlencode($emailSubject)
+                            . '&body=' . rawurlencode($emailBody)
+                        : null;
+                @endphp
+
+                @if ($adminEmail)
+                    <button
+                       type="button"
+                       id="contactAdminBtn"
+                       data-compose-url="{{ $gmailComposeUrl }}"
+                       class="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 font-medium text-gray-700 border border-gray-300 hover:bg-gray-100 transition">
+                        <i class="fa-solid fa-envelope"></i>
+                        Hubungi Admin via Email
+                    </button>
+                @else
+                    <div class="rounded-lg border border-yellow-300 bg-yellow-100 px-4 py-3 text-sm text-yellow-800">
+                        Email admin belum tersedia untuk sertifikat ini.
+                    </div>
+                @endif
+            </div>
+
         </div>
 
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('contactAdminBtn');
+
+            if (!btn) return;
+
+            btn.addEventListener('click', function () {
+                const url = btn.getAttribute('data-compose-url');
+
+                if (!url) return;
+
+                window.open(url, '_blank', 'noopener,noreferrer');
+            });
+        });
+    </script>
 
 </body>
 </html>
